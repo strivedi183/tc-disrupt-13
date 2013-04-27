@@ -6,6 +6,7 @@ gem 'jquery-rails'
 gem 'haml'
 gem 'bcrypt-ruby'
 gem 'puma'
+gem 'twitter'
 
 group :assets do
   gem 'sass-rails'
