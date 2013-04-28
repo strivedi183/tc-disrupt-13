@@ -56,12 +56,12 @@ class Event < ActiveRecord::Base
   end
 
   def get_recent_tweets(hashtag)
-    if self.contents != []
-      @since_id = self.contents.order("twitter_content_id DESC").first
-    else
-      @since_id = nil
-    end
-    Twitter.search(hashtag, options = {:count => 100, :since_id => @since_id }).statuses.each do |tweet|
+    # if self.contents != []
+    #   @since_id = self.contents.order("twitter_content_id DESC").map(&:twitter_content_id).last
+    # else
+    #   @since_id = nil
+    # end
+    Twitter.search(hashtag, options = {:count => 100}).statuses.each do |tweet|
       content = Content.new
       content.content_type = 'twitter'
       content.twitter_content_id = tweet.id
