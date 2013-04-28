@@ -10,7 +10,7 @@ class SessionController < ApplicationController
     else
     end
     authenticate
-    redirect_to events_path
+    redirect_to root_path
   end
 
   def destroy
