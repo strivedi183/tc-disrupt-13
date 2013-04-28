@@ -12,6 +12,8 @@ class AddContentsTable < ActiveRecord::Migration
       t.string :twitter_media_id
       t.string :twitter_media_url
       t.string :twitter_media_upload
+      t.string :instagram_content_id
+      t.string :instagram_created_at
       t.integer :event_id
       t.timestamps
     end

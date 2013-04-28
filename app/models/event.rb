@@ -75,5 +75,14 @@ class Event < ActiveRecord::Base
   def get_recent_instagrams(hashtag)
   end
 
+  private
+  def geocoder
+    result = Geocoder.search(self.address).first
+
+    if result.present?
+      self.latitude = result.latitude
+      self.longitude = result.longitude
+    end
+  end
 end
 
