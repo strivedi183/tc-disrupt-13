@@ -80,14 +80,16 @@ class Event < ActiveRecord::Base
   def get_instagram_location_id
     if self.is_post_public?
       # We would have count be greater if we were returning all potential events to the user, instead we are picking one for demo
-      self.instagram_location_id = Instagram.location_search(self.latitude, self.longitude, options = {:count => 1}).first.id
-      self.save
+      if self.address.present?
+        self.instagram_location_id = Instagram.location_search(self.latitude, self.longitude, options = {:count => 1}).first.id
+        self.save
+      end
     end
   end
 
   def get_all_recent_instagrams
     if self.is_post_public?
-      self.get_instagram_location_id
+      self.get_instagram_location_id if self.address.present?
     end
     filters_array = self.filters.where(:network => 'instagram').map(&:tag)
     filters_array.each do |filter|
