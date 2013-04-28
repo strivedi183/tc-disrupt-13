@@ -17,9 +17,18 @@ ActiveRecord::Schema.define(:version => 20130427202935) do
     t.text     "body"
     t.string   "url"
     t.string   "content_type"
+    t.string   "twitter_content_id"
+    t.string   "twitter_created_at"
+    t.string   "twitter_body"
+    t.string   "twitter_user_id"
+    t.string   "twitter_user_name"
+    t.string   "twitter_screen_name"
+    t.string   "twitter_profile_image_url"
+    t.string   "twitter_media_id"
+    t.string   "twitter_media_url"
     t.integer  "event_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   create_table "events", :force => true do |t|

@@ -13,4 +13,10 @@
 class Permission < ActiveRecord::Base
   attr_accessible :network, :handle, :event_id
   belongs_to :event, :inverse_of => :permissions
+
+  before_save :downcase_handle
+
+  def downcase_handle
+    self.handle = self.handle.downcase
+  end
 end

@@ -7,6 +7,7 @@ gem 'haml'
 gem 'bcrypt-ruby'
 gem 'puma'
 gem 'twitter'
+gem 'instagram'
 
 group :assets do
   gem 'sass-rails'

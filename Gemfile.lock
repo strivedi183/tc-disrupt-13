@@ -77,6 +77,8 @@ GEM
       railties (>= 3.0.0)
     faraday (0.8.7)
       multipart-post (~> 1.1)
+    faraday_middleware (0.9.0)
+      faraday (>= 0.7.4, < 0.9)
     ffi (1.8.1)
     formatador (0.2.4)
     guard (1.8.0)
@@ -90,8 +92,14 @@ GEM
       rspec (~> 2.11)
     haml (4.0.2)
       tilt
+    hashie (2.0.4)
     hike (1.2.2)
     i18n (0.6.1)
+    instagram (0.10.0)
+      faraday (>= 0.7, < 0.9)
+      faraday_middleware (~> 0.8)
+      hashie (>= 0.4.0)
+      multi_json (~> 1.0, >= 1.0.3)
     journey (1.0.4)
     jquery-rails (2.2.1)
       railties (>= 3.0, < 5.0)
@@ -231,6 +239,7 @@ DEPENDENCIES
   factory_girl_rails
   guard-rspec
   haml
+  instagram
   jquery-rails
   launchy
   meta_request
