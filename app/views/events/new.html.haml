@@ -1,2 +1,6 @@
-- if @auth.present?
-  = render 'events/form'
+.row
+  .span2
+  .span6
+    - if @auth.present?
+      = render 'events/form'
+  .span4
