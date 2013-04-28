@@ -31,4 +31,12 @@ class Content < ActiveRecord::Base
   attr_accessible :content_type, :event_id, :remote_twitter_media_upload_url
   belongs_to :event, :inverse_of => :contents
   mount_uploader :twitter_media_upload, ImageUploader
+
+  before_save :convert_instagram_created_time_to_utc
+
+  def convert_instagram_created_time_to_utc
+    if self.instagram_created_at.present?
+      self.instagram_created_at = Time.at(self.instagram_created_at.to_i)
+    end
+  end
 end
