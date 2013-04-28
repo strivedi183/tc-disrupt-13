@@ -46,6 +46,8 @@ class EventsController < ApplicationController
         @event.permissions << permission
       end
     end
+    @event.get_all_recent_tweets
+    @event.get_all_recent_instagrams
     redirect_to (@event)
   end
   def index
