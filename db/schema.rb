@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(:version => 20130427202935) do
     t.string   "twitter_media_id"
     t.string   "twitter_media_url"
     t.string   "twitter_media_upload"
+    t.string   "instagram_content_id"
+    t.string   "instagram_created_at"
     t.integer  "event_id"
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
@@ -33,6 +35,9 @@ ActiveRecord::Schema.define(:version => 20130427202935) do
   create_table "events", :force => true do |t|
     t.string   "name"
     t.text     "description"
+    t.string   "address"
+    t.float    "latitude",       :default => 0.0
+    t.float    "longitude",      :default => 0.0
     t.boolean  "is_view_public", :default => true
     t.boolean  "is_post_public", :default => true
     t.integer  "user_id"

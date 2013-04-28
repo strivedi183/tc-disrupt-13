@@ -13,11 +13,13 @@
 #
 
 class Event < ActiveRecord::Base
-  attr_accessible :name, :description, :is_view_public, :is_post_public, :user_id
+  attr_accessible :name, :description, :is_view_public, :is_post_public, :user_id, :address, :latitude, :longitude
   has_many :contents, :inverse_of => :event
   has_many :filters, :inverse_of => :event
   has_many :permissions, :inverse_of => :event
   belongs_to :user, :inverse_of => :events
+
+  # before_save :geocoder
 
   def is_view_public?
     if self.is_view_public == true

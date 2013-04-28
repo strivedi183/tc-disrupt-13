@@ -11,6 +11,7 @@ gem 'instagram'
 gem 'carrierwave'
 gem 'fog'
 gem 'rmagick'
+gem 'geocoder'
 
 group :assets do
   gem 'sass-rails'
