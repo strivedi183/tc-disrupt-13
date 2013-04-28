@@ -23,7 +23,6 @@ f7 = Filter.create(:network => 'instagram', :tag => 'hackathon')
 f8 = Filter.create(:network => 'instagram', :tag => 'hackdisrupt')
 
 
-
 e2.permissions << p1 << p2
 e1.filters << f1 << f2
 e2.filters << f3 << f4
