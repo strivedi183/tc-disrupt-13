@@ -2,14 +2,18 @@
 #
 # Table name: events
 #
-#  id             :integer          not null, primary key
-#  name           :string(255)
-#  description    :text
-#  is_view_public :boolean          default(TRUE)
-#  is_post_public :boolean          default(TRUE)
-#  user_id        :integer
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
+#  id                    :integer          not null, primary key
+#  name                  :string(255)
+#  description           :text
+#  address               :string(255)
+#  latitude              :float            default(0.0)
+#  longitude             :float            default(0.0)
+#  instagram_location_id :string(255)
+#  is_view_public        :boolean          default(TRUE)
+#  is_post_public        :boolean          default(TRUE)
+#  user_id               :integer
+#  created_at            :datetime         not null
+#  updated_at            :datetime         not null
 #
 
 class Event < ActiveRecord::Base
@@ -74,9 +78,9 @@ class Event < ActiveRecord::Base
   end
 
   def get_instagram_location_id
-    if self.event.is_post_public?
+    if self.is_post_public?
       # We would have count be greater if we were returning all potential events to the user, instead we are picking one for demo
-      self.instagram_location_id = Instagram.location_search(self.event.latidude, self.event.longitude, options = {:count => 1}).first.id
+      self.instagram_location_id = Instagram.location_search(self.latitude, self.longitude, options = {:count => 1}).first.id
       self.save
     end
   end
@@ -96,8 +100,8 @@ class Event < ActiveRecord::Base
       results = []
       location_results = Instagram.location_recent_media(self.instagram_location_id)
       location_results.each do |result|
-        if location_result.tags.first == hashtag
-          new_results << result
+        if result.tags.first == hashtag
+          results << result
         end
       end
     else
@@ -108,7 +112,7 @@ class Event < ActiveRecord::Base
       content.content_type = 'instagram'
       content.instagram_content_id = result.id
       content.instagram_created_at = result.created_time #NEED TO CONVERT TO UTC
-      content.instagram_content_media_url = result.images.standard_resolution.url
+      content.instagram_media_url = result.images.standard_resolution.url
       content.instagram_body = result.caption.text
       content.instagram_user_name = result.caption.from.full_name
       content.instagram_screen_name = result.caption.from.username

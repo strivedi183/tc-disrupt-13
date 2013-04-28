@@ -9,9 +9,15 @@
 <body>
 
 <div class='container'>
-
-  <%= yield %>
-
+  <div id="nav">
+    <%= render 'layouts/nav' %>
+  </div>
+  <div id="body">
+    <%= render 'layouts/body' %>
+  </div>
+  <div id="footer">
+    <%= render 'layouts/footer' %>
+  </div>
 </div>
 
 </body>
