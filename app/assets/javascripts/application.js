@@ -4,5 +4,6 @@
 //= require 'moment.js'
 //= require 'sugar.js'
 //= require 'underscore.js'
-//= require 'jquery.isotope.js'
+//= require 'jquery.imagesloaded.js'
+//= require 'wookmark.js'
 //= require 'scrappy.js'
