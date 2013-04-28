@@ -26,7 +26,7 @@
           <b class="caret"></b>
         </a>
         <ul class="dropdown-menu">
-          <% @auth.events.where(:is_view_public? == true).each do |event| %>
+          <% Event.where(:is_view_public? == true).each do |event| %>
             <li><%= link_to(event.name, event_path(event.id)) %></li>
           <% end %>
         </ul>
