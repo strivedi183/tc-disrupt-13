@@ -38,7 +38,7 @@ class Event < ActiveRecord::Base
   end
 
   def get_all_recent_tweets
-    filters_array = self.filters.where(:network => 'twitter')
+    filters_array = self.filters.where(:network => 'twitter').map(&:tag)
     filters_array.each do |filter|
       get_recent_tweets(filter)
     end
@@ -74,7 +74,58 @@ class Event < ActiveRecord::Base
     end
   end
 
+  def get_instagram_location_id
+    if self.event.is_post_public?
+      # We would have count be greater if we were returning all potential events to the user, instead we are picking one for demo
+      self.instagram_location_id = Instagram.location_search(self.event.latidude, self.event.longitude, options = {:count => 1}).first.id
+      self.save
+    end
+  end
+
+  def get_all_recent_instagrams
+    if self.is_post_public?
+      self.get_instagram_location_id
+    end
+    filters_array = self.filters.where(:network => 'instagram').map(&:tag)
+    filters_array.each do |filter|
+      get_recent_instagrams(filter)
+    end
+  end
+
   def get_recent_instagrams(hashtag)
+    if self.instagram_location_id.present?
+      results = []
+      location_results = Instagram.location_recent_media(self.instagram_location_id)
+      location_results.each do |result|
+        if location_result.tags.first == hashtag
+          new_results << result
+        end
+      end
+    else
+      results = Instagram.tag_recent_media(hashtag)
+    end
+    results.each do |result|
+      content = Content.new
+      content.content_type = 'instagram'
+      content.instagram_content_id = result.id
+      content.instagram_created_at = result.created_time #NEED TO CONVERT TO UTC
+      content.instagram_content_media_url = result.images.standard_resolution.url
+      content.instagram_body = result.caption.text
+      content.instagram_user_name = result.caption.from.full_name
+      content.instagram_screen_name = result.caption.from.username
+      content.instagram_profile_image_url = result.caption.from.profile_picture
+      content.instagram_user_id = result.caption.from.id
+      if self.is_post_public?
+        content.save
+        self.contents << content
+      else
+        permissions_array = self.permissions.where(:network => 'instagram').map(&:handle)
+        if permissions_array.include?(content.instagram_screen_name)
+          content.save
+          self.contents << content
+        end
+      end
+    end
   end
 
   private
