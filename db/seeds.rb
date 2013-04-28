@@ -29,3 +29,6 @@ e2.filters << f3 << f4
 e3.filters << f5 << f6 << f7 << f8
 
 u1.events << e1 << e2 << e3
+
+e3.get_all_recent_tweets
+e3.get_all_recent_instagrams
