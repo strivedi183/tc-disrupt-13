@@ -1,6 +1,6 @@
 .row
   .span12
-    %h2.white= @event.name
+    %h2= @event.name
     #main{:role => "main"}
       %ul#tiles
         - @event.order_contents_created_at.uniq.each do |content|
