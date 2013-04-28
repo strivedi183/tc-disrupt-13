@@ -25,6 +25,13 @@ class Event < ActiveRecord::Base
 
   # before_save :geocoder
 
+  def order_contents_created_at
+    instagram_array = self.contents.order(:instagram_created_at)
+    twitter_array = self.contents.order(:twitter_created_at)
+    new_array = instagram_array + twitter_array
+    new_array.sort!
+  end
+
   def is_view_public?
     if self.is_view_public == true
       true
