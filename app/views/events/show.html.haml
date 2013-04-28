@@ -3,7 +3,7 @@
     %h2.white= @event.name
     #main{:role => "main"}
       %ul#tiles
-        - @event.contents.each do |content|
+        - @event.order_contents_created_at.uniq.each do |content|
           - if content.content_type == 'twitter' && content.twitter_media_url.present?
             %li
               %p
