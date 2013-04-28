@@ -1,0 +1,32 @@
+%create_event_form
+  = form_for @event do |f|
+    = f.label :name
+    = f.text_field :name
+    %br
+    = f.label :description
+    = f.text_area :description
+    %br
+    = f.label :is_post_public?
+    = f.check_box :is_post_public?
+    %br
+    = f.label :is_view_public?
+    = f.check_box :is_view_public?
+    %br
+    = f.label :address
+    = f.text_field :address
+    %br
+    = label_tag 'Enter twitter hashtags separated by commas'
+    = text_field_tag :twitter_hashtags
+    %br
+    = label_tag 'Enter instagram hashtags separated by commas'
+    = text_field_tag :instagram_hashtags
+    %br
+    = label_tag 'Enter twitter handles that can post separated by commas'
+    = text_field_tag :twitter_handles
+    %br
+    = label_tag 'Enter instagram handles that can post separated by commas'
+    = text_field_tag :instagram_handles
+    %br
+    = hidden_field_tag :user_id, @auth.id
+    %br
+    = f.submit 'Log in'

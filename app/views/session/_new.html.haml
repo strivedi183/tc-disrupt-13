@@ -1,0 +1,7 @@
+%login_form
+  = form_tag '/login' do
+    = text_field_tag :email, nil, :placeholder => 'email', :autofocus => true
+    %br
+    = password_field_tag :password, nil, :placeholder => 'password'
+    %br
+    = submit_tag 'Log in'
