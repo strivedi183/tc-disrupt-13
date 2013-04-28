@@ -1,8 +1,11 @@
-.content {
-  height: 90%;
-}
-
 .instagram_image {
   height: 225px;
   width: 225px;
+}
+
+.twitter_text {
+  border: 1px dotted black;
+  border-radius: 5px;
+  display: inline-block;
+  width: 200px;
 }
