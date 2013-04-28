@@ -56,7 +56,6 @@ class Event < ActiveRecord::Base
       content.twitter_screen_name = tweet.user.screen_name.downcase
       content.twitter_profile_image_url = tweet.user.profile_image_url
       if tweet.media.present?
-        binding.pry
         content.twitter_media_id = tweet.media.first.id
         content.twitter_media_url = tweet.media.first.media_url
         content.remote_twitter_media_upload_url = tweet.media.first.media_url
