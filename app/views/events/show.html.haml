@@ -1,15 +1,27 @@
 .row
   .span12
-    %h2= @event.name
+    %h2.white= @event.name
     #main{:role => "main"}
       %ul#tiles
         - @event.contents.each do |content|
           - if content.content_type == 'twitter' && content.twitter_media_url.present?
-            %li= image_tag(content.twitter_media_upload.thumb)
+            %li
+              %p
+                = "@" + content.twitter_screen_name + " - Twitter"
+              = image_tag(content.twitter_media_upload.thumb)
+              %p
+                = content.twitter_body
           - elsif content.content_type == 'instagram' && content.instagram_media_url.present?
-            %li= image_tag(content.instagram_media_url, :size => '225x225')
+            %li
+              %p
+                = "@" + content.instagram_screen_name + " - Instagram"
+              = image_tag(content.instagram_media_url, :size => '225x225')
+              %p
+                = content.instagram_body
           -elsif content.content_type == 'twitter' && content.twitter_media_url.blank?
-            - content.twitter_body.split
-            %li= content.twitter_body
+            %li
+              %p
+                = "@" + content.twitter_screen_name + " - Twitter"
+              = content.twitter_body
 
 

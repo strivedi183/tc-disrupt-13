@@ -38,7 +38,7 @@ height: auto;
 #tiles li p {
 color: #666;
 font-size: 12px;
-margin: 7px 0 0 7px;
+margin: 7px 0 0 0;
 }
 
 /** General page styling **/
