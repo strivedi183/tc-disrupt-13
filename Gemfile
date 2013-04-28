@@ -7,6 +7,10 @@ gem 'haml'
 gem 'bcrypt-ruby'
 gem 'puma'
 gem 'twitter'
+gem 'carrierwave'
+gem 'fog'
+gem 'rmagick'
+
 
 group :assets do
   gem 'sass-rails'
