@@ -5,6 +5,7 @@
       <% if @auth.present? %>
       <li><%= link_to('My Account Page', @auth) %></li>
       <li><%= link_to('My Events', '#') %></li>
+      <li><%= link_to('New Event', new_event_path) %></li>
       <li><%= link_to('Logout', login_path, :method => 'delete') %></li>
       <% else %>
       <li><%= link_to('Login', login_path, :remote => true) %></li>

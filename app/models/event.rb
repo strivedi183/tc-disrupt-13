@@ -49,7 +49,7 @@ class Event < ActiveRecord::Base
   end
 
   def get_recent_tweets(hashtag)
-    Twitter.search(hashtag).statuses.each do |tweet|
+    Twitter.search(hashtag, options = {:count => 100}).statuses.each do |tweet|
       content = Content.new
       content.content_type = 'twitter'
       content.twitter_content_id = tweet.id
