@@ -4,10 +4,10 @@
     = f.text_field :name
     = f.label :description
     = f.text_area :description
-    = f.label :is_post_public?
-    = f.check_box :is_post_public?
-    = f.label :is_view_public?
-    = f.check_box :is_view_public?
+    .inline-block= f.label :is_post_public?
+    .inline-block= f.check_box :is_post_public?
+    .inline-block= f.label :is_view_public?
+    .inline-block= f.check_box :is_view_public?
     = f.label :address
     = f.text_field :address
     = label_tag 'Enter twitter hashtags separated by commas'

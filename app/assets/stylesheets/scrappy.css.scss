@@ -14,3 +14,22 @@ li {
 body {
   height: 1300px;
 }
+
+#create_event_form form input {
+  width: 570px;
+}
+
+
+#create_event_form form textarea {
+  width: 570px;
+  height: 250px;
+}
+
+
+#create_event_form form textfield {
+  width: 570px;
+}
+
+.inline-block {
+  display: inline-block;
+}
