@@ -6,9 +6,9 @@ Filter.delete_all
 
 u1 = User.create(:email => 'a@gmail.com', :password => 'a', :password_confirmation => 'a')
 
-e1 = Event.create(:name => 'event1', :address => '311 W 34th St, NYC', :latitude => 40.752856, :longitude => -73.9940476)
+e1 = Event.create(:name => 'event1', :latitude => 40.752856, :longitude => -73.9940476)
 e2 = Event.create(:name => 'event2', :is_post_public => false)
-e3 = Event.create(:name => 'TechCrunch', :description => 'NY Disrupt 2013', :address => '311 W 34th St, NYC', :latitude => 40.752856, :longitude => -73.9940476)
+e3 = Event.create(:name => 'TechCrunch', :description => 'NY Disrupt 2013',  :latitude => 40.752856, :longitude => -73.9940476)
 
 p1 = Permission.create(:network => 'Twitter', :handle => 'ScrappyTest')
 p2 = Permission.create(:network => 'Instagram', :handle => 'khalua2')
