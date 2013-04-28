@@ -14,6 +14,12 @@ class AddContentsTable < ActiveRecord::Migration
       t.string :twitter_media_upload
       t.string :instagram_content_id
       t.string :instagram_created_at
+      t.string :instagram_media_url
+      t.text :instagram_body
+      t.string :instagram_user_name
+      t.string :instagram_screen_name
+      t.string :instagram_profile_image_url
+      t.string :instagram_user_id
       t.integer :event_id
       t.timestamps
     end

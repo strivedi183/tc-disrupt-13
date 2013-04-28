@@ -16,6 +16,10 @@ class Permission < ActiveRecord::Base
 
   before_save :downcase_handle
 
+  def downcase_network
+    self.network = self.network.downcase
+  end
+
   def downcase_handle
     self.handle = self.handle.downcase
   end

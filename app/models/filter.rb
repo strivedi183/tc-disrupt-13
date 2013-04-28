@@ -13,4 +13,6 @@
 class Filter < ActiveRecord::Base
   attr_accessible :network, :tag, :event_id
   belongs_to :event, :inverse_of => :filters
+
+
 end
