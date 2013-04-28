@@ -14,9 +14,12 @@ p2 = Permission.create(:network => 'Instagram', :handle => 'khalua2')
 
 f1 = Filter.create(:network => 'twitter', :tag => '#mechanical_pencil')
 f2 = Filter.create(:network => 'instagram', :tag => 'mechanical_pencil')
+f3 = Filter.create(:network => 'twitter', :tag => '#mechanical_pencil')
+f4 = Filter.create(:network => 'instagram', :tag => 'mechanical_pencil')
 
 
 e2.permissions << p1 << p2
-e2.filters << f1 << f2
+e1.filters << f1 << f2
+e2.filters << f3 << f4
 
 u1.events << e1 << e2
