@@ -70,7 +70,6 @@ class Event < ActiveRecord::Base
   end
 
   def get_recent_instagrams(hashtag)
-
   end
 
 end
