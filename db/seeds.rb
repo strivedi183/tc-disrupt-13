@@ -12,9 +12,11 @@ e2 = Event.create(:name => 'event2', :is_post_public => false)
 p1 = Permission.create(:network => 'Twitter', :handle => 'ScrappyTest')
 p2 = Permission.create(:network => 'Instagram', :handle => 'khalua2')
 
-f1 = Filter(:network => 'Twitter', :tag => '#mechanical_pencil')
-f2 = Filter(:network => 'instagram', :tag => 'mechanical_pencil')
+f1 = Filter.create(:network => 'twitter', :tag => '#mechanical_pencil')
+f2 = Filter.create(:network => 'instagram', :tag => 'mechanical_pencil')
+
 
 e2.permissions << p1 << p2
+e2.filters << f1 << f2
 
 u1.events << e1 << e2

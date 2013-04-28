@@ -27,22 +27,29 @@ ActiveRecord::Schema.define(:version => 20130427202935) do
     t.string   "twitter_media_upload"
     t.string   "instagram_content_id"
     t.string   "instagram_created_at"
+    t.string   "instagram_media_url"
+    t.text     "instagram_body"
+    t.string   "instagram_user_name"
+    t.string   "instagram_screen_name"
+    t.string   "instagram_profile_image_url"
+    t.string   "instagram_user_id"
     t.integer  "event_id"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
   end
 
   create_table "events", :force => true do |t|
     t.string   "name"
     t.text     "description"
     t.string   "address"
-    t.float    "latitude",       :default => 0.0
-    t.float    "longitude",      :default => 0.0
-    t.boolean  "is_view_public", :default => true
-    t.boolean  "is_post_public", :default => true
+    t.float    "latitude",              :default => 0.0
+    t.float    "longitude",             :default => 0.0
+    t.string   "instagram_location_id"
+    t.boolean  "is_view_public",        :default => true
+    t.boolean  "is_post_public",        :default => true
     t.integer  "user_id"
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
   end
 
   create_table "filters", :force => true do |t|
