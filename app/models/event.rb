@@ -17,6 +17,7 @@ class Event < ActiveRecord::Base
   has_many :contents, :inverse_of => :event
   has_many :filters, :inverse_of => :event
   has_many :permissions, :inverse_of => :event
+  belongs_to :user, :inverse_of => :events
 
   def is_view_public?
     if self.is_view_public == true
@@ -53,8 +54,10 @@ class Event < ActiveRecord::Base
       content.twitter_screen_name = tweet.user.screen_name.downcase
       content.twitter_profile_image_url = tweet.user.profile_image_url
       if tweet.media.present?
-        content.twitter_media_id = tweet.media.id
-        content.twitter_media_url = tweet.media.media_url
+        binding.pry
+        content.twitter_media_id = tweet.media.first.id
+        content.twitter_media_url = tweet.media.first.media_url
+        content.remote_twitter_media_upload_url = tweet.media.first.media_url
       end
       if self.is_post_public?
         content.save

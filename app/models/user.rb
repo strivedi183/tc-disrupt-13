@@ -13,6 +13,6 @@
 
 class User < ActiveRecord::Base
   attr_accessible :first, :last, :email, :password, :password_confirmation
-  has_many :events, :inverse_of => :users
+  has_many :events, :inverse_of => :user
   has_secure_password
 end

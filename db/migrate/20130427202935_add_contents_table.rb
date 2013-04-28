@@ -1,8 +1,6 @@
 class AddContentsTable < ActiveRecord::Migration
   def change
     create_table :contents do |t|
-      t.text :body
-      t.string :url
       t.string :content_type
       t.string :twitter_content_id
       t.string :twitter_created_at
@@ -13,6 +11,7 @@ class AddContentsTable < ActiveRecord::Migration
       t.string :twitter_profile_image_url
       t.string :twitter_media_id
       t.string :twitter_media_url
+      t.string :twitter_media_upload
       t.integer :event_id
       t.timestamps
     end
