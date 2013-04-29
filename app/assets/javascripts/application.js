@@ -1,6 +1,7 @@
 //= require jquery
 //= require jquery_ujs
-//= require 'bootstrap/js/bootstrap.js'
+//= require 'foundation/js/vendor/custom.modernizr.js'
+//= require 'foundation/js/foundation.min.js'
 //= require 'moment.js'
 //= require 'sugar.js'
 //= require 'underscore.js'

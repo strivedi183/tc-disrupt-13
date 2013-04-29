@@ -1,5 +1,6 @@
 window.app =
   ready: ->
+    $(document).foundation()
     $("#tiles").imagesLoaded ->
       options =
         autoResize: true
@@ -8,7 +9,6 @@ window.app =
         flexibleWidth: 310 # Optional, the maximum width of a grid item
 
       handler = $("#tiles li")
-
       handler.wookmark options
 
 $(document).ready(app.ready)

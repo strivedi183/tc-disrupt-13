@@ -1,36 +1,41 @@
-<div class="navbar">
-  <div class="navbar-inner">
-    <a class="brand" href="/">Albumeer</a>
-    <ul class="nav">
-      <% if @auth.present? %>
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle ="dropdown">
-          My Events
-          <b class="caret"></b>
-        </a>
-        <ul class="dropdown-menu">
-          <% @auth.events.each do |event| %>
-            <li><%= link_to(event.name, event_path(event.id)) %></li>
-          <% end %>
-        </ul>
+<nav class="top-bar">
+    <ul class="title-area">
+      <!-- Title Area -->
+      <li class="name">
+        <h1>
+          <a href="/">
+            Albumeer
+          </a>
+        </h1>
       </li>
-      <li><%= link_to('New Event', new_event_path) %></li>
-      <li><%= link_to('Logout', login_path, :method => 'delete') %></li>
-      <% else %>
-      <li><%= link_to('Login', login_path, :remote => true) %></li>
-      <li><%= link_to('Register', new_user_path, :remote => true) %></li>
-      <% end %>
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle ="dropdown">
-          All Public Events
-          <b class="caret"></b>
-        </a>
-        <ul class="dropdown-menu">
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+    <section class="top-bar-section">
+      <!-- Left Nav Section -->
+      <ul class="left">
+        <% if @auth.blank?  %>
+          <li><%= link_to('Login', login_path, :remote => true) %></li>
+          <li><%= link_to('Register', new_user_path, :remote => true) %></li>
+        <% else %> <!-- the user is logged in -->
+          <li><%= link_to('Your Albums', user_path(@auth)) %></li>
+          <li><%= link_to('New Album', new_event_path) %></li>
+          <li><%= link_to('Logout', login_path, :method => 'delete') %></li>
+          <% end %>
+      </ul>
+      <!-- Right Nav Section -->
+      <ul class="right">
+        <li class="divider"></li>
+        <li class="has-dropdown">
+          <a href="#">Public albums</a>
+          <ul class="dropdown">
           <% Event.where(:is_view_public? == true).each do |event| %>
             <li><%= link_to(event.name, event_path(event.id)) %></li>
           <% end %>
-        </ul>
-      </li>
-    </ul>
-  </div>
-</div>
+
+          </ul>
+        </li>
+      </ul>
+    </section>
+  </nav>
+
+  <!-- End Top Bar -->

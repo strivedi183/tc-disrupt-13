@@ -1,18 +1,17 @@
-%register_form
-  = form_for @user do |f|
-    = f.label :first
-    = f.text_field :first
-    %br
-    = f.label :last
-    = f.text_field :last
-    %br
-    = f.label :email
-    = f.text_field :email
-    %br
-    = f.label :password
-    = f.password_field :password
-    %br
-    = f.label :password_confirmation
-    = f.password_field :password_confirmation
-    %br
-    = f.submit 'Log in'
+.row
+  .large-4.columns
+    #register_form
+      = form_for @user do |f|
+        = f.label :first
+        = f.text_field :first
+        = f.label :last
+        = f.text_field :last
+        = f.label :email
+        = f.text_field :email
+        = f.label :password
+        = f.password_field :password
+        = f.label :password_confirmation
+        = f.password_field :password_confirmation
+        %br
+        = f.submit 'Log in'
+  .large-4.columns

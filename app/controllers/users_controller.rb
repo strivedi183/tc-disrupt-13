@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   def update
   end
   def show
+    @events = Event.where(:user_id => params[:id])
   end
   def destroy
   end
