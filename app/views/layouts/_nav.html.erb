@@ -22,19 +22,6 @@
           <li><%= link_to('Logout', login_path, :method => 'delete') %></li>
           <% end %>
       </ul>
-      <!-- Right Nav Section -->
-      <ul class="right">
-        <li class="divider"></li>
-        <li class="has-dropdown">
-          <a href="#">Public albums</a>
-          <ul class="dropdown">
-          <% Event.where(:is_view_public? == true).each do |event| %>
-            <li><%= link_to(event.name, event_path(event.id)) %></li>
-          <% end %>
-
-          </ul>
-        </li>
-      </ul>
     </section>
   </nav>
 

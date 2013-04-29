@@ -1,1 +1,22 @@
-%h1 WASSUP
+#login_form
+#register_form
+
+.row
+  .large-12.colums
+    %h2 Welcome to Albumeer
+
+
+.row
+  .large-7.columns
+    = image_tag('archive.jpg')
+    %h1.white Welcome to Albumeer
+    %p.lead Automatically archive tweets and photos
+
+  .large-5.columns
+    %h4 Public albums
+    %table
+      %tbody
+        - @events.each do |event|
+          %tr
+            %td= link_to(event.name, event_path(event))
+
