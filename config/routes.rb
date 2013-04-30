@@ -4,4 +4,5 @@ TcDisrupt13::Application.routes.draw do
   get '/login' => 'session#new'
   post '/login' => 'session#create'
   delete '/login' => 'session#destroy'
+  get '/about' => 'welcome#about'
 end
