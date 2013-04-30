@@ -3,19 +3,34 @@
 
 .row
   .large-12.colums
-    %h2 Welcome to Albumeer
+    %h1.welcome-greeting Welcome to Albumeer
     %h5 Automatically archive tweets and photos!
 
 .row
-  .large-7.columns
+  .large-10.columns
     = image_tag('archive.jpg')
     %h1.white Welcome to Albumeer
-
-  .large-5.columns
-    %h4 Public albums
+  .large-2.columns
+    %h4 Public Albums
     %table
       %tbody
         - @events.each do |event|
           %tr
             %td= link_to(event.name, event_path(event))
-
+.row
+  .large-12.columns
+    %h3 What some of our users are saying
+.row
+  .large-4.columns
+    %blockquote Holy crap! This was a problem I didn't even know I had!
+  .large-4.columns
+    %blockquote What's a Twitter?
+  .large-4.columns
+    %blockquote I'm pretty sure this is against the EULA of Twitter and Instagram. Enjoy this while it lasts.
+.row
+  .large-4.columns
+    %p.subheader.right - John A, NYC
+  .large-4.columns
+    %p.subheader.right - My dad, LI, NY
+  .large-4.columns
+    %p.subheader.right - Sandip, NYC (by way of Philly)
