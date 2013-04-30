@@ -12,6 +12,8 @@ gem 'carrierwave'
 gem 'fog'
 gem 'rmagick'
 gem 'geocoder'
+gem 'aws-ses'
+
 
 group :assets do
   gem 'sass-rails'

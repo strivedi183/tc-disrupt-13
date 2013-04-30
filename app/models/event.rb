@@ -117,33 +117,42 @@ class Event < ActiveRecord::Base
         end
       end
     else
-      results = Instagram.tag_recent_media(hashtag)
-    end
-    results.each do |result|
       begin
-        content = Content.new
-        content.content_type = 'instagram'
-        content.instagram_content_id = result.id
-        content.instagram_created_at = result.created_time #NEED TO CONVERT TO UTC
-        content.instagram_media_url = result.images.standard_resolution.url
-        content.instagram_body = result.caption.text
-        content.instagram_user_name = result.caption.from.full_name
-        content.instagram_screen_name = result.caption.from.username
-        content.instagram_profile_image_url = result.caption.from.profile_picture
-        content.instagram_user_id = result.caption.from.id
-        if self.is_post_public?
-          content.save
-          self.contents << content
-        else
-          permissions_array = self.permissions.where(:network => 'instagram').map(&:handle)
-          if permissions_array.include?(content.instagram_screen_name)
-            content.save
-            self.contents << content
-          end
-        end
+        results = Instagram.tag_recent_media(hashtag)
       rescue
       end
     end
+    if results.present?
+      results.each do |result|
+        begin
+          content = Content.new
+          content.content_type = 'instagram'
+          content.instagram_content_id = result.id
+          content.instagram_created_at = result.created_time #NEED TO CONVERT TO UTC
+          content.instagram_media_url = result.images.standard_resolution.url
+          content.instagram_body = result.caption.text
+          content.instagram_user_name = result.caption.from.full_name
+          content.instagram_screen_name = result.caption.from.username
+          content.instagram_profile_image_url = result.caption.from.profile_picture
+          content.instagram_user_id = result.caption.from.id
+          if self.is_post_public?
+            content.save
+            self.contents << content
+          else
+            permissions_array = self.permissions.where(:network => 'instagram').map(&:handle)
+            if permissions_array.include?(content.instagram_screen_name)
+              content.save
+              self.contents << content
+            end
+          end
+        rescue
+        end
+      end
+    end
+  end
+
+  def send_invite
+    #placeholder
   end
 
   private

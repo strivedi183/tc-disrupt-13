@@ -2,6 +2,7 @@ class EventsController < ApplicationController
   def new
     @event = Event.new
   end
+
   def create
     @event = Event.create(params[:event])
     if params[:twitter_hashtags].present?
@@ -46,6 +47,12 @@ class EventsController < ApplicationController
         @event.permissions << permission
       end
     end
+
+    if params[:invites].present?
+      binding.pry
+      Notifications.send_invite(params[:invites],@auth).deliver
+    end
+
     @event.get_all_recent_tweets
     @event.get_all_recent_instagrams
     redirect_to (@event)
@@ -53,6 +60,7 @@ class EventsController < ApplicationController
   def index
     @events = Event.where(:is_view_public? == true)
   end
+
   def show
     @event = Event.find(params[:id])
   end

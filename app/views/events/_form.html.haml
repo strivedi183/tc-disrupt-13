@@ -13,6 +13,8 @@
         .inline-block= f.check_box :is_view_public?
         / = f.label :address
         / = f.text_field :address
+        = label_tag 'Email invites'
+        = text_area_tag :invites
         = label_tag 'Twitter hashtags separated by commas'
         = text_field_tag :twitter_hashtags
         = label_tag 'Instagram hashtags separated by commas'
