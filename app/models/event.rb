@@ -56,35 +56,33 @@ class Event < ActiveRecord::Base
   end
 
   def get_recent_tweets(hashtag)
-    # if self.contents != []
-    #   @since_id = self.contents.order("twitter_content_id DESC").map(&:twitter_content_id).last
-    # else
-    #   @since_id = nil
-    # end
     Twitter.search(hashtag, options = {:count => 50}).statuses.each do |tweet|
-      content = Content.new
-      content.content_type = 'twitter'
-      content.twitter_content_id = tweet.id
-      content.twitter_created_at = tweet.created_at
-      content.twitter_body = tweet.text
-      content.twitter_user_id = tweet.user.id
-      content.twitter_user_name = tweet.user.name
-      content.twitter_screen_name = tweet.user.screen_name.downcase
-      content.twitter_profile_image_url = tweet.user.profile_image_url
-      if tweet.media.present?
-        content.twitter_media_id = tweet.media.first.id
-        content.twitter_media_url = tweet.media.first.media_url
-        content.remote_twitter_media_upload_url = tweet.media.first.media_url
-      end
-      if self.is_post_public?
-        content.save
-        self.contents << content
-      else
-        permissions_array = self.permissions.where(:network => 'twitter').map(&:handle)
-        if permissions_array.include?(content.twitter_screen_name)
+      begin
+        content = Content.new
+        content.content_type = 'twitter'
+        content.twitter_content_id = tweet.id
+        content.twitter_created_at = tweet.created_at
+        content.twitter_body = tweet.text
+        content.twitter_user_id = tweet.user.id
+        content.twitter_user_name = tweet.user.name
+        content.twitter_screen_name = tweet.user.screen_name.downcase
+        content.twitter_profile_image_url = tweet.user.profile_image_url
+        if tweet.media.present?
+          content.twitter_media_id = tweet.media.first.id
+          content.twitter_media_url = tweet.media.first.media_url
+          content.remote_twitter_media_upload_url = tweet.media.first.media_url
+        end
+        if self.is_post_public?
           content.save
           self.contents << content
+        else
+          permissions_array = self.permissions.where(:network => 'twitter').map(&:handle)
+          if permissions_array.include?(content.twitter_screen_name)
+            content.save
+            self.contents << content
+          end
         end
+      rescue
       end
     end
   end
@@ -122,25 +120,28 @@ class Event < ActiveRecord::Base
       results = Instagram.tag_recent_media(hashtag)
     end
     results.each do |result|
-      content = Content.new
-      content.content_type = 'instagram'
-      content.instagram_content_id = result.id
-      content.instagram_created_at = result.created_time #NEED TO CONVERT TO UTC
-      content.instagram_media_url = result.images.standard_resolution.url
-      content.instagram_body = result.caption.text
-      content.instagram_user_name = result.caption.from.full_name
-      content.instagram_screen_name = result.caption.from.username
-      content.instagram_profile_image_url = result.caption.from.profile_picture
-      content.instagram_user_id = result.caption.from.id
-      if self.is_post_public?
-        content.save
-        self.contents << content
-      else
-        permissions_array = self.permissions.where(:network => 'instagram').map(&:handle)
-        if permissions_array.include?(content.instagram_screen_name)
+      begin
+        content = Content.new
+        content.content_type = 'instagram'
+        content.instagram_content_id = result.id
+        content.instagram_created_at = result.created_time #NEED TO CONVERT TO UTC
+        content.instagram_media_url = result.images.standard_resolution.url
+        content.instagram_body = result.caption.text
+        content.instagram_user_name = result.caption.from.full_name
+        content.instagram_screen_name = result.caption.from.username
+        content.instagram_profile_image_url = result.caption.from.profile_picture
+        content.instagram_user_id = result.caption.from.id
+        if self.is_post_public?
           content.save
           self.contents << content
+        else
+          permissions_array = self.permissions.where(:network => 'instagram').map(&:handle)
+          if permissions_array.include?(content.instagram_screen_name)
+            content.save
+            self.contents << content
+          end
         end
+      rescue
       end
     end
   end
@@ -155,4 +156,3 @@ class Event < ActiveRecord::Base
     end
   end
 end
-
