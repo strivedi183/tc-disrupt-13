@@ -49,8 +49,12 @@ class EventsController < ApplicationController
     end
 
     if params[:invites].present?
-      binding.pry
-      Notifications.send_invite(params[:invites],@auth).deliver
+      invites = params[:invites]
+      twitter_hashtags = params[:twitter_hashtags]
+      twitter_handles = params[:twitter_handles]
+      instagram_hashtags = params[:instagram_hashtags]
+      instagram_handles = params[:instagram_handles]
+      Notifications.send_invite(@auth, invites, twitter_hashtags, twitter_handles, instagram_hashtags, instagram_handles).deliver
     end
 
     @event.get_all_recent_tweets

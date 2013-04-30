@@ -2,7 +2,5 @@
 
 %h5= "Use the following hashtags in Twitter"
 %ul
-  %
-
-
-%p
+  - @twitter_hashtags.each do |hashtag|
+    %li= hashtag
