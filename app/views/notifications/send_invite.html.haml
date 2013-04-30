@@ -1,6 +1,15 @@
-%h4= "Hello, you've been invited by #{@user.first} to add contents to her Album in Albumeer"
+%h4= "Hello, you've been invited by #{@inviter.first} to add contents to their Album in Albumeer"
 
-%h5= "Use the following hashtags in Twitter"
-%ul
-  - @twitter_hashtags.each do |hashtag|
-    %li= hashtag
+- if @twitter_hashtags.present?
+  %h5= "Use the following hashtags in Twitter"
+  %ul
+    - @twitter_hashtags.each do |hashtag|
+      %li= hashtag
+
+- if @instagram_hashtags.present?
+  %h5= "Use the following hashtags in Instagram"
+  %ul
+    - @instagram_hashtags.each do |hashtag|
+      %li= hashtag
+
+%h4= "You can view the Album here -TBD "

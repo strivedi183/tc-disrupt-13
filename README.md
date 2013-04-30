@@ -1,4 +1,4 @@
-Scrapbkr
+Albumeer
 ========
 
-Coded entirely at TechCrunch Disrupt Hackathon 2013.
+Coded at TechCrunch Disrupt NY Hackathon 2013.
