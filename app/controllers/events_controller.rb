@@ -49,7 +49,7 @@ class EventsController < ApplicationController
     end
 
     if params[:invites].present?
-      Notifications.send_invite(@auth, params).deliver
+      Notifications.send_invite(@auth, @event, params).deliver
     end
 
     @event.get_all_recent_tweets
